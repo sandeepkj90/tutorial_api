@@ -21,9 +21,10 @@ const tutorialDAO={
 
         });
     },
-    getAll:()=>
+    getAll:(page,size)=>
     {
-        return tutorialSchema.find().populate({
+        let skip = page?(page-1) * size : 0;        
+        return tutorialSchema.find({}).skip(skip).limit(parseInt(size)).populate({
             path:'author',
             select:{name:1,email:1,_id:0}
 
@@ -34,6 +35,7 @@ const tutorialDAO={
      
      updateById:(id,payload)=>
      {
+         payload['updateAt'] = Date.now();
          return tutorialSchema.updateOne(id,{$set:payload})
 
      },

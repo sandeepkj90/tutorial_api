@@ -1,4 +1,3 @@
-
 const mongoose=require('mongoose');
 const constant=require('./utils/constant');
 
@@ -8,7 +7,7 @@ const constant=require('./utils/constant');
   useFindAndModify: false,
   useCreateIndex: true
 },()=>{
-    console.log("succesfully connected to the database");
+    console.log("Succesfully connected to the database");
 });
 
 

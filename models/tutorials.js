@@ -1,6 +1,7 @@
 let mongoose=require('../db')
 const constant=require('../utils/constant')
 const Schema=mongoose.Schema;
+
 const tutorialSchema=new Schema({
     name:{
         type:String,
@@ -13,9 +14,7 @@ const tutorialSchema=new Schema({
     },
     createdAt:{
          type : Date,
-        default: Date.now
-         
-         
+        default: Date.now   
     },
     updatedAt:{
         type : Date,
@@ -24,4 +23,5 @@ const tutorialSchema=new Schema({
     }
    
 })
+
 module.exports=mongoose.model(constant.MODEL_NAME.TUTORIAL,tutorialSchema);

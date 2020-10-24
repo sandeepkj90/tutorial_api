@@ -1,7 +1,8 @@
 let mongoose=require('../db')
 const constant=require('../utils/constant')
 const Schema=mongoose.Schema;
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcrypt');
+
 const userSchema=new Schema({
     name:{
         type:String,
@@ -32,4 +33,4 @@ userSchema.pre('save',async function(next)
     next();
 })
 
-module.exports=mongoose.model(constant.MODEL_NAME.USER,userSchema);
+module.exports = mongoose.model(constant.MODEL_NAME.USER,userSchema);

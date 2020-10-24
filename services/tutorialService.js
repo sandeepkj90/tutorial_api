@@ -26,12 +26,12 @@ const tutorialService={
 
         })
     },
-    getAll:()=>
+    getAll:(page,size)=>
     {
         return new Promise((reslove,reject)=>
         {
             console.log("am from the service of get all")
-            tutorialsDAO.getAll().then(result=>
+            tutorialsDAO.getAll(page,size).then(result=>
                 {
                     reslove(result)
                 }).catch(error=>

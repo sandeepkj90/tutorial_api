@@ -4,7 +4,6 @@ const constant=require('../utils/constant')
 const jwt=require('jsonwebtoken')
 const authService={
     login:(payload)=>{
-        let that=this;
         return new Promise((resolve,reject)=>
         {
             UserDAO.getUser({email:payload.email}).then( async result=>
@@ -19,12 +18,11 @@ const authService={
                             let token = jwt.sign(result._doc, constant.TOKEN_SECRET);
                             let resData={name:result.name,email:result.email,_id:result._id}
                             
-                            resolve({user:resData,token});
-
-
-                           
+                            resolve({user:resData,token});                        
                            
                         }
+
+                        //{status: success, data: [],message:'user register'}
                         else{
                             reject({message:"invalid password"})
                         }

@@ -4,7 +4,7 @@ const express=require('express')
 const router=express.Router();
 const constant=require('../utils/constant')
 
-router.post("/",isAuthenticate,(req,res)=>
+router.post("/", isAuthenticate ,(req,res)=>
 {
     console.log("  from tutoriLal controller user detail",req.user._id)
     tutorialService.create({...req.body,author:req.user._id}).then((result) => {
@@ -29,10 +29,13 @@ router.get("/:id",(req,res)=>
        
     });
 });
-router.get("/",(req,res)=>
-{
+
+router.get("/",(req,res)=>{
+    let page = req.query.page;
+    let size = req.query.size;
+    console.log(page,size);
     console.log("calling from get all")
-    tutorialService.getAll().then((result) => {
+    tutorialService.getAll(page,size).then((result) => {
         res.send(result)
        
     }).catch((error) => {
@@ -41,6 +44,7 @@ router.get("/",(req,res)=>
        
     });
 });
+
 router.put("/:id",(req,res)=>
 {
     console.log("calling from get by id")
@@ -53,6 +57,7 @@ router.put("/:id",(req,res)=>
        
     });
 });
+
 router.delete("/:id",(req,res)=>
 {
     console.log("calling from get by id")
